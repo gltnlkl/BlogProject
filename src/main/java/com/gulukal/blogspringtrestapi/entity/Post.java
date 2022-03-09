@@ -2,11 +2,11 @@ package com.gulukal.blogspringtrestapi.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+
 /**
  * @author Gulten Ulukal
  */
-
-import javax.persistence.*;
 
 @Data
 @AllArgsConstructor

@@ -14,3 +14,6 @@ Blog project spring boot rest api
 - Junit - Mockito
 - Design Patterns
 - IntelliJ IDEA
+
+## To do
+- MySql  -->  create database myblog;

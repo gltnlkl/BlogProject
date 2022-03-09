@@ -2,6 +2,10 @@ package com.gulukal.blogspringtrestapi.entity;
 
 import lombok.*;
 
+/**
+ * @author Gulten Ulukal
+ */
+
 import javax.persistence.*;
 
 @Data

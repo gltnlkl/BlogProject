@@ -5,6 +5,10 @@ import com.gulukal.blogspringtrestapi.entity.Post;
 import com.gulukal.blogspringtrestapi.exception.ResourceNotFoundException;
 import com.gulukal.blogspringtrestapi.repository.PostRepository;
 import com.gulukal.blogspringtrestapi.service.PostService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,8 +47,15 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostDto> getAllPosts(int pageNo, int pageSize) {
 
-        List <Post> posts= postRepository.findAll();
-        return posts.stream().map(post->mapToDto(post)).collect(Collectors.toList());
+        //create pageable instance
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+
+        Page<Post> posts= postRepository.findAll(pageable);
+
+        //get content for page object
+        List<Post> listOfPosts = posts.getContent();
+
+        return listOfPosts.stream().map(post->mapToDto(post)).collect(Collectors.toList());
     }
 
     @Override

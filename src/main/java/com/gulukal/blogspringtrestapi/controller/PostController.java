@@ -32,6 +32,7 @@ public class PostController {
     }
 
     //get all post rest api
+    //http://localhost:8080/api/posts?pageNo=5&pageSize=2  test it
     @GetMapping
     public List<PostDto> getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,

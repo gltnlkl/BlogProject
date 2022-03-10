@@ -1,5 +1,6 @@
 package com.gulukal.blogspringtrestapi.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Data;
  */
 
 @Data
+@Builder
 public class PostDto {
 
     private long id;

@@ -2,9 +2,13 @@ package com.gulukal.blogspringtrestapi.service.impl;
 
 import com.gulukal.blogspringtrestapi.dto.PostDto;
 import com.gulukal.blogspringtrestapi.entity.Post;
+import com.gulukal.blogspringtrestapi.exception.ResourceNotFoundException;
 import com.gulukal.blogspringtrestapi.repository.PostRepository;
 import com.gulukal.blogspringtrestapi.service.PostService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Gulten Ulukal
@@ -26,20 +30,47 @@ public class PostServiceImpl implements PostService {
     public PostDto createPost(PostDto postDto) {
 
         //convert dto to entity
-        Post post = new Post();
-        post.setTitle(postDto.getTitle());
-        post.setDescription(postDto.getDescription());
-        post.setContent(postDto.getContent());
+        Post post = mapToEntity(postDto);
 
         Post newPost = postRepository.save(post);
 
         //convert entity to dto
-        PostDto postResponse = new PostDto();
-        postResponse.setId(newPost.getId());
-        postResponse.setTitle(newPost.getTitle());
-        postResponse.setDescription(newPost.getDescription());
-        postResponse.setContent(newPost.getContent());
+        PostDto postResponse = mapToDto(newPost);
 
         return postResponse;
+    }
+
+    @Override
+    public List<PostDto> getAllPosts() {
+
+        List <Post> posts= postRepository.findAll();
+        return posts.stream().map(post->mapToDto(post)).collect(Collectors.toList());
+    }
+
+    @Override
+    public PostDto getPostById(long id) {
+        Post post = postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post","id",id));
+        return mapToDto(post);
+    }
+
+    //convert entity to dto
+    private PostDto mapToDto(Post post) {
+
+        return PostDto.builder()
+                .id(post.getId())
+                .title(post.getTitle())
+                .description(post.getDescription())
+                .content(post.getContent())
+                .build();
+    }
+
+    //convert dto to entity
+    private Post mapToEntity(PostDto postDto) {
+
+        return Post.builder()
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .content(postDto.getContent())
+                .build();
     }
 }

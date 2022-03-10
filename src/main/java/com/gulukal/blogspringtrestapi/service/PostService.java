@@ -1,6 +1,7 @@
 package com.gulukal.blogspringtrestapi.service;
 
 import com.gulukal.blogspringtrestapi.dto.PostDto;
+import com.gulukal.blogspringtrestapi.dto.PostResponse;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface PostService {
 
     PostDto createPost(PostDto postDto);
 
-    List<PostDto> getAllPosts(int pageNo , int pageSize);
+    PostResponse getAllPosts(int pageNo , int pageSize, String sortBy);
 
     PostDto getPostById( long id);
 

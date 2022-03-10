@@ -1,6 +1,7 @@
 package com.gulukal.blogspringtrestapi.controller;
 
 import com.gulukal.blogspringtrestapi.dto.PostDto;
+import com.gulukal.blogspringtrestapi.dto.PostResponse;
 import com.gulukal.blogspringtrestapi.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +34,14 @@ public class PostController {
 
     //get all post rest api
     //http://localhost:8080/api/posts?pageNo=5&pageSize=2  test it
+    //http://localhost:8080/api/posts?pageNo=2&pageSize=4&sortBy=title test with sortby
     @GetMapping
-    public List<PostDto> getAllPosts(
+    public PostResponse getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value= "sortBy",defaultValue = "id", required = false) String sortBy
     ) {
-        return postService.getAllPosts(pageNo, pageSize);
+        return postService.getAllPosts(pageNo, pageSize,sortBy);
     }
 
     //get post by id rest api

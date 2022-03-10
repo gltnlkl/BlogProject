@@ -1,6 +1,7 @@
 package com.gulukal.blogspringtrestapi.service.impl;
 
 import com.gulukal.blogspringtrestapi.dto.PostDto;
+import com.gulukal.blogspringtrestapi.dto.PostResponse;
 import com.gulukal.blogspringtrestapi.entity.Post;
 import com.gulukal.blogspringtrestapi.exception.ResourceNotFoundException;
 import com.gulukal.blogspringtrestapi.repository.PostRepository;
@@ -45,17 +46,29 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPosts(int pageNo, int pageSize) {
+    public PostResponse getAllPosts(int pageNo, int pageSize, String sortBy) {
 
         //create pageable instance
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 
         Page<Post> posts= postRepository.findAll(pageable);
 
         //get content for page object
         List<Post> listOfPosts = posts.getContent();
 
-        return listOfPosts.stream().map(post->mapToDto(post)).collect(Collectors.toList());
+        List<PostDto> content =  listOfPosts.stream().map(post->mapToDto(post)).collect(Collectors.toList());
+
+        //create postResponse object to return
+        PostResponse postResponse = new PostResponse();
+
+        postResponse.setContent(content);
+        postResponse.setPageNo(posts.getNumber());
+        postResponse.setPageSize(posts.getSize());
+        postResponse.setTotalElements(posts.getTotalElements());
+        postResponse.setTotalPages(posts.getTotalPages());
+        postResponse.setLast(posts.isLast());
+
+        return postResponse;
     }
 
     @Override

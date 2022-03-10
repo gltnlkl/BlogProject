@@ -33,15 +33,19 @@ public class PostController {
     }
 
     //get all post rest api
-    //http://localhost:8080/api/posts?pageNo=5&pageSize=2  test it
-    //http://localhost:8080/api/posts?pageNo=2&pageSize=4&sortBy=title test with sortby
+    //http://localhost:8080/api/posts?pageNo=5&pageSize=2  test it diffrent from default
+    //http://localhost:8080/api/posts?pageNo=2&pageSize=4&sortBy=title test with sortby diffrent from default
+    //http://localhost:8080/api/posts?pageNo=2&pageSize=4&sortBy=title&sortDir=dsc
+    //http://localhost:8080/api/posts?pageNo=2&pageSize=4&sortBy=title&sortDir=asc
     @GetMapping
     public PostResponse getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
-            @RequestParam(value= "sortBy",defaultValue = "id", required = false) String sortBy
+            @RequestParam(value= "sortBy",defaultValue = "id", required = false) String sortBy,
+            @RequestParam(value = "sortDir",defaultValue = "asc", required = false) String sortDir
+
     ) {
-        return postService.getAllPosts(pageNo, pageSize,sortBy);
+        return postService.getAllPosts(pageNo, pageSize,sortBy,sortDir);
     }
 
     //get post by id rest api

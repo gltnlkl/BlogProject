@@ -77,14 +77,16 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDto getPostById(long id) {
-        Post post = postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post","id",id));
+        //get post by id from the database
+        Post post = getPostByIdFromDatabase(id);
+
         return mapToDto(post);
     }
 
     @Override
     public PostDto updatePost(PostDto postDto, long id) {
         //get post by id from the database
-        Post post = postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post","id",id));
+        Post post = getPostByIdFromDatabase(id);
 
         //update post
         post.setTitle(postDto.getTitle());
@@ -99,14 +101,20 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deletePostById(long id) {
         //get post by id from the database
-        Post post = postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post","id",id));
+        Post post = getPostByIdFromDatabase(id);
 
         //delete post from database
         postRepository.deleteById(id);
 
 
-
     }
+
+    //get post by id from the database
+    private Post getPostByIdFromDatabase(long id) {
+
+        return postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+    }
+
 
     //convert entity to dto
     private PostDto mapToDto(Post post) {

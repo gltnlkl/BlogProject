@@ -3,12 +3,15 @@ package com.gulukal.blogspringtrestapi.service.impl;
 import com.gulukal.blogspringtrestapi.dto.CommentDto;
 import com.gulukal.blogspringtrestapi.entity.Comment;
 import com.gulukal.blogspringtrestapi.entity.Post;
+import com.gulukal.blogspringtrestapi.exception.BlogApiException;
 import com.gulukal.blogspringtrestapi.exception.ResourceNotFoundException;
 import com.gulukal.blogspringtrestapi.repository.CommentRepository;
 import com.gulukal.blogspringtrestapi.repository.PostRepository;
 import com.gulukal.blogspringtrestapi.service.CommentService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.BadLocationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +60,24 @@ public class CommentServiceImpl implements CommentService {
 
         //convert list of comment entities to list of comment
         return comments.stream().map(comment -> mapToDto(comment)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CommentDto getCommentById(long postId, long commentId) {
+
+        //retrieve post entity by id
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new ResourceNotFoundException("Post", "id", postId));
+
+        //retrieve comment by id
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                ()-> new ResourceNotFoundException("Comment", "commentId", commentId));
+
+        if(((comment.getPost().getId()) != (post.getId()))){
+            throw new BlogApiException(HttpStatus.BAD_REQUEST,"Comment does not belong to post");
+        }
+        return mapToDto(comment);
+
     }
 
 

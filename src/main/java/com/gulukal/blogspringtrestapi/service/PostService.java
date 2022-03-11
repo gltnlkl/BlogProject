@@ -3,14 +3,12 @@ package com.gulukal.blogspringtrestapi.service;
 import com.gulukal.blogspringtrestapi.dto.PostDto;
 import com.gulukal.blogspringtrestapi.dto.PostResponse;
 
-import java.util.List;
 
 /**
  * @author Gulten Ulukal
  */
 
 public interface PostService {
-
 
     PostDto createPost(PostDto postDto);
 

@@ -11,6 +11,7 @@ import javax.persistence.*;
  * @author Gulten Ulukal
  */
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +30,7 @@ public class Comment {
     private String body;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", nullable = false)  //foreign key in comments table
+    @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
 }

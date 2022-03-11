@@ -123,6 +123,7 @@ public class PostServiceImpl implements PostService {
     private Post mapToEntity(PostDto postDto) {
 
         return Post.builder()
+                .id(postDto.getId())
                 .title(postDto.getTitle())
                 .description(postDto.getDescription())
                 .content(postDto.getContent())

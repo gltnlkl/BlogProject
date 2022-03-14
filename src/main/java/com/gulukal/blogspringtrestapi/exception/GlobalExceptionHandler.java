@@ -10,6 +10,11 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
 
+/**
+ * @author Gulten Ulukal
+ */
+
+//for custom response for exceptions
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -25,13 +30,19 @@ public class GlobalExceptionHandler {
     //handle specific exceptions   -FOR BLOGAPIEXCEPTION
     @ExceptionHandler(BlogApiException.class)
 
-    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(BlogApiException exception, WebRequest webRequest) {
+    public ResponseEntity<ErrorDetails> handleBlogApiException(BlogApiException exception, WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), webRequest.getDescription(false));
 
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     //global exceptions
+    @ExceptionHandler(Exception.class)
 
+    public ResponseEntity<ErrorDetails> handleGlobalException(Exception exception, WebRequest webRequest) {
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), webRequest.getDescription(false));
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }

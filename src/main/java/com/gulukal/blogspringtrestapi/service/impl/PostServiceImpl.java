@@ -6,6 +6,7 @@ import com.gulukal.blogspringtrestapi.entity.Post;
 import com.gulukal.blogspringtrestapi.exception.ResourceNotFoundException;
 import com.gulukal.blogspringtrestapi.repository.PostRepository;
 import com.gulukal.blogspringtrestapi.service.PostService;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,9 +27,11 @@ public class PostServiceImpl implements PostService {
      * Construction dependency injection
      */
     private final PostRepository postRepository;
+    private final ModelMapper mapper;
 
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, ModelMapper mapper) {
         this.postRepository = postRepository;
+        this.mapper = mapper;
     }
 
     @Override
@@ -119,22 +122,34 @@ public class PostServiceImpl implements PostService {
     //convert entity to dto
     private PostDto mapToDto(Post post) {
 
-        return PostDto.builder()
-                .id(post.getId())
-                .title(post.getTitle())
-                .description(post.getDescription())
-                .content(post.getContent())
-                .build();
+        //map with modelMapper lib.
+        PostDto postDto = mapper.map(post, PostDto.class);
+
+        return postDto;
+
+        //map with hardcode
+//        return PostDto.builder()
+//                .id(post.getId())
+//                .title(post.getTitle())
+//                .description(post.getDescription())
+//                .content(post.getContent())
+//                .build();
     }
 
     //convert dto to entity
     private Post mapToEntity(PostDto postDto) {
 
-        return Post.builder()
-                .id(postDto.getId())
-                .title(postDto.getTitle())
-                .description(postDto.getDescription())
-                .content(postDto.getContent())
-                .build();
+        //map with modelMapper lib.
+        Post post = mapper.map(postDto, Post.class);
+
+        return post;
+
+        //map with hardcode
+//        return Post.builder()
+//                .id(postDto.getId())
+//                .title(postDto.getTitle())
+//                .description(postDto.getDescription())
+//                .content(postDto.getContent())
+//                .build();
     }
 }

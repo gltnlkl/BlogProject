@@ -1,13 +1,15 @@
 package com.gulukal.blogspringtrestapi.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 /**
  * @author Gulten Ulukal
  */
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 
 public class CommentDto {

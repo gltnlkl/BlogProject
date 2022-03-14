@@ -9,8 +9,8 @@ import java.util.Set;
 /**
  * @author Gulten Ulukal
  */
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

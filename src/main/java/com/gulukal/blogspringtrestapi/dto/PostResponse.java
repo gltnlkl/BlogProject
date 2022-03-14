@@ -1,8 +1,6 @@
 package com.gulukal.blogspringtrestapi.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -10,9 +8,12 @@ import java.util.List;
  * @author Gulten Ulukal
  */
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 public class PostResponse {
     private List<PostDto> content;
     private int pageNo;

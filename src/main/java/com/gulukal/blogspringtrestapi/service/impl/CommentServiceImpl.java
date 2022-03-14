@@ -63,14 +63,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentDto getCommentById(long postId, long commentId) {
 
-        //retrieve post entity by id
-        Post post = retrievePostEntityById(postId);
-
-        //retrieve comment by id
-        Comment comment = retrieveCommentById(commentId);
-
-        //badRequestException IF ELSE
-        badRequestException(comment, post);
+        //comment by id
+        Comment comment = commentById(postId, commentId);
 
         return mapToDto(comment);
 
@@ -97,6 +91,31 @@ public class CommentServiceImpl implements CommentService {
         return mapToDto(updatedComment);
 
     }
+    
+    @Override
+    public void deleteComment(long postId, long commentId) {
+
+        //comment by id
+        Comment comment = commentById(postId, commentId);
+
+        commentRepository.delete(comment);
+    }
+
+    //comment by id
+    private Comment commentById(long postId, long commentId) {
+
+        //retrieve post entity by id
+        Post post = retrievePostEntityById(postId);
+
+        //retrieve comment by id
+        Comment comment = retrieveCommentById(commentId);
+
+        //badRequestException IF ELSE
+        badRequestException(comment, post);
+
+        return comment;
+    }
+
 
     //badRequestException IF ELSE
     private void badRequestException(Comment comment, Post post) {

@@ -1,23 +1,36 @@
 # BlogProject
-Blog project spring boot rest api 
+Blog Project Spring Boot REST API's
 
-## Technologies
-- Java SDK 11
-- Spring-Boot Framework
-- MySql Database
-- Project Lombok 
-- Swagger openapi-ui
-- Exception Handler
-- JPA
-- Maven
-- Validations
-- Junit - Mockito
-- Design Patterns
-- IntelliJ IDEA
+## Tools and Technologies
+
+### Technologies:
+- Java 8+
+- Spring Boot
+- Spring MVC
+- Spring Data JPA ( Hibernate)
+- Spring Security
+- JWT
+- Tomcat
+
+### IDE:
+- Intellij IDEA
+
+### Database:
+
+- MySQL database
+
+### Tools:
+ 
+- Swagger - API documentation
+- Postman - Test REST API
+- Maven - Build Tool
+
+### Deployment on Production:
+- AWS
 
 ## To do
-- MySql  -->  create database myblog;
-- 
+MySql  -->  create database myblog;
+
 ## What is inside
 - REST API's Design for Blog Application
 - Building CRUD REST API's for Post Resource
@@ -32,3 +45,7 @@ Blog project spring boot rest api
 - Versioning REST API's
 - Swagger REST API Documentation
 - Deploying Spring Boot Blog App on AWS Cloud
+
+## Entity relations in database
+- one to many
+- ![one to many](https://github.com/gltnlkl/BlogProject/blob/master/src/main/java/com/gulukal/blogspringtrestapi/utils/image/one%20to%20many%20bi-direct..jpg)

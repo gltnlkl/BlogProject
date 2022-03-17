@@ -29,7 +29,7 @@ Blog Project Spring Boot REST API's
 - AWS
 
 ## To do
-- MySql  -->  create database myblog;
+MySql  -->  create database myblog;
 
 ## What is inside
 - REST API's Design for Blog Application

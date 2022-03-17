@@ -1,5 +1,5 @@
 # BlogProject
-Blog project spring boot rest api 
+Blog Project Spring Boot Rest API's
 
 ## Tools and Technologies
 

@@ -28,10 +28,10 @@ Blog Project Spring Boot REST API's
 ### Deployment on Production:
 - AWS
 
-### To do
+## To do
 - MySql  -->  create database myblog;
 
-### What is inside
+## What is inside
 - REST API's Design for Blog Application
 - Building CRUD REST API's for Post Resource
 - Pagination and Sorting Support

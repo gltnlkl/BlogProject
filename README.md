@@ -28,7 +28,7 @@ Blog project spring boot rest api
 
 ## To do
 - MySql  -->  create database myblog;
-- 
+
 ## What is inside
 - REST API's Design for Blog Application
 - Building CRUD REST API's for Post Resource

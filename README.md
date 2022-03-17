@@ -1,4 +1,4 @@
-# BlogProject
+# Blog Project Backend
 Blog Project Spring Boot REST API's
 
 ## Tools and Technologies

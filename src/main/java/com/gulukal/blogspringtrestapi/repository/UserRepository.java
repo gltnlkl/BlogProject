@@ -1,10 +1,9 @@
 package com.gulukal.blogspringtrestapi.repository;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.User;
 
-import javax.crypto.spec.OAEPParameterSpec;
+import com.gulukal.blogspringtrestapi.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {

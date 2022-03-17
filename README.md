@@ -1,7 +1,6 @@
 # BlogProject
 Blog project spring boot rest api 
 
-
 ## Technologies:
 - Java 8+
 - Spring Boot

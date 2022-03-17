@@ -1,7 +1,9 @@
 # BlogProject
 Blog project spring boot rest api 
 
-## Technologies:
+## Tools and Technologies
+
+### Technologies:
 - Java 8+
 - Spring Boot
 - Spring MVC
@@ -10,26 +12,26 @@ Blog project spring boot rest api
 - JWT
 - Tomcat
 
-## IDE:
+### IDE:
 - Intellij IDEA
 
-## Database:
+### Database:
 
 - MySQL database
 
-## Tools:
+### Tools:
  
 - Swagger - API documentation
 - Postman - Test REST API
 - Maven - Build Tool
 
-## Deployment on Production:
+### Deployment on Production:
 - AWS
 
-## To do
+### To do
 - MySql  -->  create database myblog;
 
-## What is inside
+### What is inside
 - REST API's Design for Blog Application
 - Building CRUD REST API's for Post Resource
 - Pagination and Sorting Support

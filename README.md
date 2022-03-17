@@ -45,3 +45,7 @@ MySql  -->  create database myblog;
 - Versioning REST API's
 - Swagger REST API Documentation
 - Deploying Spring Boot Blog App on AWS Cloud
+
+## Entity relations in database
+- one to many
+- ![one to many](https://github.com/gltnlkl/BlogProject/blob/master/src/main/java/com/gulukal/blogspringtrestapi/utils/image/one%20to%20many%20bi-direct..jpg)

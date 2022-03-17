@@ -3,29 +3,29 @@ Blog project spring boot rest api
 
 
 ## Technologies:
--Java 8+
--Spring Boot
--Spring MVC
--Spring Data JPA ( Hibernate)
--Spring Security
--JWT
--Tomcat
+- Java 8+
+- Spring Boot
+- Spring MVC
+- Spring Data JPA ( Hibernate)
+- Spring Security
+- JWT
+- Tomcat
 
 ## IDE:
--Intellij IDEA
+- Intellij IDEA
 
 ## Database:
 
--MySQL database
+- MySQL database
 
 ## Tools:
-
--Swagger - API documentation
--Postman - Test REST API
--Maven - Build Tool
+ 
+- Swagger - API documentation
+- Postman - Test REST API
+- Maven - Build Tool
 
 ## Deployment on Production:
--AWS
+- AWS
 
 ## To do
 - MySql  -->  create database myblog;

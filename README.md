@@ -1,19 +1,31 @@
 # BlogProject
 Blog project spring boot rest api 
 
-## Technologies
-- Java SDK 11
-- Spring-Boot Framework
-- MySql Database
-- Project Lombok 
-- Swagger openapi-ui
-- Exception Handler
-- JPA
-- Maven
-- Validations
-- Junit - Mockito
-- Design Patterns
-- IntelliJ IDEA
+
+## Technologies:
+-Java 8+
+-Spring Boot
+-Spring MVC
+-Spring Data JPA ( Hibernate)
+-Spring Security
+-JWT
+-Tomcat
+
+## IDE:
+-Intellij IDEA
+
+## Database:
+
+-MySQL database
+
+## Tools:
+
+-Swagger - API documentation
+-Postman - Test REST API
+-Maven - Build Tool
+
+## Deployment on Production:
+-AWS
 
 ## To do
 - MySql  -->  create database myblog;

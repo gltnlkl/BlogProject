@@ -1,18 +1,16 @@
 package com.gulukal.blogspringtrestapi.config;
 
+import com.gulukal.blogspringtrestapi.security.CustomUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 
@@ -21,8 +19,14 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final CustomUserDetailService userDetailService;
+
+    public SecurityConfig(CustomUserDetailService userDetailService) {
+        this.userDetailService = userDetailService;
+    }
+
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -39,24 +43,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    //if you have this config method you can delete user unformations from application.properties
     @Override
-    @Bean
-    protected UserDetailsService userDetailsService() {
-
-        UserDetails gulten =
-                User.builder().username("gulten")
-                        .password(passwordEncoder().encode("user"))
-                        .roles("USER")
-                        .build();
-
-        UserDetails admin =
-                User.builder().username("admin")
-                        .password(passwordEncoder().encode("admin"))
-                        .roles("ADMIN")
-                        .build();
-        return new InMemoryUserDetailsManager(gulten, admin);
-
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
     }
+
+    //if you have this config method you can delete user unformations from application.properties
+//    @Override
+//    @Bean
+//    protected UserDetailsService userDetailsService() {
+//
+//        UserDetails gulten =
+//                User.builder().username("gulten")
+//                        .password(passwordEncoder().encode("user"))
+//                        .roles("USER")
+//                        .build();
+//
+//        UserDetails admin =
+//                User.builder().username("admin")
+//                        .password(passwordEncoder().encode("admin"))
+//                        .roles("ADMIN")
+//                        .build();
+//        return new InMemoryUserDetailsManager(gulten, admin);
+
 }
+
 

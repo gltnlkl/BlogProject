@@ -1,13 +1,14 @@
 package com.gulukal.blogspringtrestapi.controller;
 
 
+import com.gulukal.blogspringtrestapi.dto.JWTAuthResponse;
 import com.gulukal.blogspringtrestapi.dto.LoginDto;
-
 import com.gulukal.blogspringtrestapi.dto.SignUpDto;
 import com.gulukal.blogspringtrestapi.entity.Role;
 import com.gulukal.blogspringtrestapi.entity.User;
 import com.gulukal.blogspringtrestapi.repository.RoleRepository;
 import com.gulukal.blogspringtrestapi.repository.UserRepository;
+import com.gulukal.blogspringtrestapi.security.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,27 +32,35 @@ public class AuthController {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider tokenProvider;
 
-    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, JwtTokenProvider tokenProvider) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.tokenProvider = tokenProvider;
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto){
+    public ResponseEntity<JWTAuthResponse> authenticateUser(@RequestBody LoginDto loginDto) {
+        // email wrong message
+        //  if(!(userRepository.existsByEmail(loginDto.getUsernameOrEmail()))&&!(userRepository.existsByUsername(loginDto.getUsernameOrEmail()))){
+        //  return new ResponseEntity<>("Username or Email is not exist!", HttpStatus.BAD_REQUEST);
+        //  }
+        //password wrong message?
 
-        if(!(userRepository.existsByEmail(loginDto.getUsernameOrEmail()))&&!(userRepository.existsByUsername(loginDto.getUsernameOrEmail()))){
-            return new ResponseEntity<>("Username or Email is not exist!", HttpStatus.BAD_REQUEST);
-        }
-    //password wrong message???
-       Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(),
                 loginDto.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>("User signed-in successfully!", HttpStatus.OK);
+
+        // get token fro, tokenProvider
+        String token = tokenProvider.generateToken(authentication);
+
+        // return new ResponseEntity<>("User signed-in successfully!", HttpStatus.OK);
+        return ResponseEntity.ok(new JWTAuthResponse(token));
 
     }
 

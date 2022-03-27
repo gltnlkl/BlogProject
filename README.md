@@ -54,16 +54,19 @@ MySql  -->  create database myblog;
  ![](https://github.com/gltnlkl/BlogProject/blob/master/src/main/java/com/gulukal/blogspringtrestapi/utils/image/many%20to%20many.jpg)
  
 ## The ways to Versioning Blog App REST APIs
+
 1. Versioning through URI Path
 - One way to version a REST API is to include the version number in the URI path.
 #### Examples:
 - http://www.example.com/api/1/products 
 - http://www.example.com/api/v1/products
+
 2. Versioning through query parameters
 - Another option for versioning a REST API is to include the version number as a query parameter.
 #### Examples:
 - http://www.example.com/api/products?version=1 
 - http://www.example.com/api/products?version=2
+
 3. Versioning through custom headers
 - REST APIs can also be versioned by providing custom headers with the version number included as an attribute.
 - The main difference between this approach and the two previous ones is that it doesn’t clutter the URI with versioning information.
@@ -72,6 +75,7 @@ MySql  -->  create database myblog;
 - http://localhost:8080/api/products headers=[X-API-VERSION=2]
 ##### Pros: It doesn’t clutter the URI with versioning information
 ##### Cons: It requires custom headers
+
 4. Versioning through content negotiation
 - The last strategy we are addressing is versioning through content negotiation.
 - In this approach, we use the Accept header in the request.
@@ -79,7 +83,7 @@ MySql  -->  create database myblog;
 - http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v1+json] 
 - http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v2+json]
 
-## Way is used for Swagger
+## Why the Swagger is used for
 - What are rest endpoints available
 - What is response codes
 - What is dto structure

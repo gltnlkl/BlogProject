@@ -53,7 +53,7 @@ MySql  -->  create database myblog;
 ###### many to many
  ![](https://github.com/gltnlkl/BlogProject/blob/master/src/main/java/com/gulukal/blogspringtrestapi/utils/image/many%20to%20many.jpg)
  
-## The ways to Versioning Blog App REST APIs
+## The ways to versioning Blog App REST APIs
 
 1. Versioning through URI Path
 - One way to version a REST API is to include the version number in the URI path.

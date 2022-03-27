@@ -79,4 +79,10 @@ MySql  -->  create database myblog;
 - http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v1+json] 
 - http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v2+json]
 
-
+## Way is used for Swagger
+- What are rest endpoints available
+- What is response codes
+- What is dto structure
+- What are error codes
+- What are HTTP methods
+- What are standart error messages

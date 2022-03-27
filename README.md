@@ -53,7 +53,7 @@ MySql  -->  create database myblog;
 ###### many to many
  ![](https://github.com/gltnlkl/BlogProject/blob/master/src/main/java/com/gulukal/blogspringtrestapi/utils/image/many%20to%20many.jpg)
  
-## Versioning Blog App REST APIs
+## The way to Versioning Blog App REST APIs
 - Versioning through URI Path
 - Versioning through query parameters
 - Versioning through custom headers

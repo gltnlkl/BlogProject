@@ -54,23 +54,29 @@ MySql  -->  create database myblog;
  ![](https://github.com/gltnlkl/BlogProject/blob/master/src/main/java/com/gulukal/blogspringtrestapi/utils/image/many%20to%20many.jpg)
  
 ## The way to Versioning Blog App REST APIs
-- Versioning through URI Path
-One way to version a REST API is to include the version number in the URI path.
+1. Versioning through URI Path
+- One way to version a REST API is to include the version number in the URI path.
 #### Examples:
-1. http://www.example.com/api/1/products 
-2. http://www.example.com/api/v1/products
-- Versioning through query parameters
-Another option for versioning a REST API is to include the version number as a query parameter.
+- http://www.example.com/api/1/products 
+- http://www.example.com/api/v1/products
+2. Versioning through query parameters
+- Another option for versioning a REST API is to include the version number as a query parameter.
 #### Examples:
-1. http://www.example.com/api/products?version=1 
-2. http://www.example.com/api/products?version=2
-- Versioning through custom headers
+- http://www.example.com/api/products?version=1 
+- http://www.example.com/api/products?version=2
+3. Versioning through custom headers
+- REST APIs can also be versioned by providing custom headers with the version number included as an attribute.
+- The main difference between this approach and the two previous ones is that it doesn’t clutter the URI with versioning information.
 #### Examples:
-1. http://www.example.com/api/1/products 
-2. http://www.example.com/api/v1/products
-- Versioning through content negotiation
-REST APIs can also be versioned by providing custom headers with the version number included as an attribute. The main difference between this approach and the two previous ones is that it doesn’t clutter the URI with versioning information.
+- http://localhost:8080/api/products headers=[X-API-VERSION=1]
+- http://localhost:8080/api/products headers=[X-API-VERSION=2]
+##### Pros: It doesn’t clutter the URI with versioning information
+##### Cons: It requires custom headers
+4. Versioning through content negotiation
+- The last strategy we are addressing is versioning through content negotiation.
+- In this approach, we use the Accept header in the request.
 #### Examples:
-1. http://localhost:8080/api/products headers=[X-API-VERSION=1]
-2. http://localhost:8080/api/products headers=[X-API-VERSION=2]
+- http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v1+json] 
+- http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v2+json]
+
 

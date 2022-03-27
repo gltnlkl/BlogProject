@@ -55,6 +55,10 @@ MySql  -->  create database myblog;
  
 ## The way to Versioning Blog App REST APIs
 - Versioning through URI Path
+One way to version a REST API is to include the version number in the URI path.
+###### Examples:
+1. http://www.example.com/api/1/products 
+2. http://www.example.com/api/v1/products
 - Versioning through query parameters
 - Versioning through custom headers
 - Versioning through content negotiation

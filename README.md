@@ -83,6 +83,7 @@ MySql  -->  create database myblog;
 - http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v1+json] 
 - http://localhost:8080/api/products headers[Accept=application/vnd.javaguides-v2+json]
 
+## REST Documentation with Swagger
 ## Why the Swagger is used for
 Swagger is used for answer those questions between REST API Developer and REST API Consumer
 - What are rest endpoints available

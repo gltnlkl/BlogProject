@@ -20,8 +20,10 @@ import java.util.Set;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
+    private Long id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -29,10 +31,9 @@ public class Post {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "content", nullable = false) // no need to write name because it is already give an existing name in db, if you want to give diffrent name use it.
+    @Column(name = "content", nullable = false)
     private String content;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Comment> comments = new HashSet<>();
-
 }
